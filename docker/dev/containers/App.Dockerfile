@@ -11,6 +11,8 @@ RUN docker-php-ext-install mysqli pdo pdo_mysql
 
 RUN apk add zip unzip
 
+COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
+
 RUN chmod +x /usr/local/bin/docker-php-cmd && \
     chmod 755 /usr/local/bin/docker-php-cmd
 
