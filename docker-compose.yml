@@ -38,3 +38,8 @@ services:
       - .:/var/www/html
     networks:
       - slim-network
+  redis:
+    image: redis:7.0.8-alpine
+    restart: unless-stopped
+    networks:
+      - slim-network
