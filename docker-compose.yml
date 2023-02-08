@@ -12,13 +12,14 @@ services:
     restart: unless-stopped
     volumes:
       - ./docker/dev/nginx/load-balancer.conf:/etc/nginx/nginx.conf
+    ports:
+      - "29010:80"
     depends_on:
       - app-proxy
     networks:
       - slim-network
   app-proxy:
     image: nginx:mainline-alpine
-    container_name: proxy
     working_dir: /var/www/html
     restart: unless-stopped
     volumes:
@@ -31,7 +32,6 @@ services:
     build:
       dockerfile: ./docker/dev/containers/App.Dockerfile
       context: .
-    container_name: bvg-fw-login-app
     working_dir: /var/www/html
     restart: unless-stopped
     volumes:
